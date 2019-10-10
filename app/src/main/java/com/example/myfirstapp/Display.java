@@ -14,9 +14,9 @@ public class Display extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-        mMyTitle =(TextView)findViewById(R.id.myTasks);
+        mMyTitle =(TextView)findViewById(R.id.mytitle);
         mMyTime=(TextView)findViewById(R.id.myTime);
-        mMyTasks=(TextView)findViewById(R.id.myTasks);
+        mMyTasks=(TextView)findViewById(R.id.myTask);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String timeDate = intent.getStringExtra("timeDate");
