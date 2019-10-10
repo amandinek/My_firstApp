@@ -14,6 +14,8 @@
        android:paddingTop="10dp"
         android:layout_centerHorizontal="true"
         />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +34,12 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/myTime"
         />
-
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listTask"
+        android:layout_below="@+id/myTask"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>
