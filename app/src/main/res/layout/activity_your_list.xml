@@ -7,5 +7,51 @@
     tools:context=".YourList">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/qu" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:paddingTop="200dp"
+        android:hint="title"
+
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/task"
+        android:hint="your task"
+        android:paddingRight="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/date"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:hint="time and date"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/title"
+
+        />
+    <Button
+        android:id="@+id/viewact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="view activities"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
+
+        />
+
+
 
 </RelativeLayout>
