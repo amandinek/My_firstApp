@@ -40,6 +40,7 @@
         android:layout_below="@id/title"
 
         />
+
     <Button
         android:id="@+id/viewact"
         android:layout_width="match_parent"
@@ -51,7 +52,6 @@
         android:background="@color/colorPrimaryDark"
 
         />
-
 
 
 </RelativeLayout>
