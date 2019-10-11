@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Display">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tasks"
-        android:id="@+id/mytitle"
-       android:paddingTop="10dp"
-        android:layout_centerHorizontal="true"
-        />
 
 
     <TextView
@@ -22,7 +14,6 @@
         android:text="time"
         android:id="@+id/myTime"
         android:paddingTop="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/mytitle"
         />
     <TextView
@@ -31,8 +22,8 @@
         android:text="My task"
         android:id="@+id/myTask"
         android:paddingTop="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/myTime"
+        android:paddingLeft="30dp"
         />
     <ListView
         android:layout_width="wrap_content"
