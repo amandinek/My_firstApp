@@ -23,15 +23,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/date"
         />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/date"
-        android:hint="time and date"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/title"
-
-        />
 
     <Button
         android:id="@+id/viewact"
