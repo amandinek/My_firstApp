@@ -3,10 +3,14 @@ package com.example.myfirstapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 public class Display extends AppCompatActivity {
     private TextView mMyTitle;
@@ -19,12 +23,11 @@ public class Display extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-        mMyTitle =(TextView)findViewById(R.id.mytitle);
+        Calendar calendar=Calendar.getInstance();
+        String dTime= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         mMyTime=(TextView)findViewById(R.id.myTime);
         mMyTasks=(TextView)findViewById(R.id.myTask);
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String timeDate = intent.getStringExtra("timeDate");
         String task = intent.getStringExtra("task");
         mlistTask=(ListView)findViewById(R.id.listTask);
 
@@ -33,8 +36,7 @@ public class Display extends AppCompatActivity {
 
 
 
-        mMyTitle.setText("My tasks" +"\n"+ title);
-        mMyTime.setText( timeDate);
+        mMyTime.setText(dTime);
         mMyTasks.setText( task);
 
 
