@@ -11,7 +11,6 @@ import android.widget.EditText;
 public class YourList extends AppCompatActivity {
 
     private EditText mTitle;
-    private EditText mDate;
     private EditText mTask;
     private Button mAcivity;
 
@@ -20,7 +19,6 @@ public class YourList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_list);
         mTitle =(EditText) findViewById(R.id.title);
-        mDate =(EditText) findViewById(R.id.date);
         mTask =(EditText) findViewById(R.id.task);
         mAcivity=(Button) findViewById(R.id.viewact);
 
@@ -28,12 +26,10 @@ public class YourList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String title = mTitle.getText().toString();
-                String timeDate = mDate.getText().toString();
                 String task = mTask.getText().toString();
 
                 Intent intent = new Intent(YourList.this, Display.class);
                 intent.putExtra("title", title);
-                intent.putExtra("timeDate", timeDate);
                 intent.putExtra("task", task);
 
                 startActivity(intent);
