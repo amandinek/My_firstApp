@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    private Button mSendButton;
     @BindView(R.id.sendButton) Button mSendButton;
@@ -22,14 +22,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 //        mSendButton=(Button) findViewById(R.id.sendButton);
+        mSendButton.setOnClickListener(this);
+    }
 
-        mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, YourList.class);
-                startActivity(intent);
+                if (v == mSendButton) {
+                    Intent intent = new Intent(MainActivity.this, YourList.class);
+                    startActivity(intent);
 
+                }
             }
-        });
-    }
+
 }

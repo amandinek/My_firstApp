@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -39,7 +42,13 @@ public class Display extends AppCompatActivity {
         ArrayAdapter adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,toDo);
         mlistTask.setAdapter(adapter);
 
-
+        mlistTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                String task =((TextView)view).getText().toString();
+                Toast.makeText(Display.this,task, Toast.LENGTH_LONG).show();
+            }
+        });
         mMyTime.setText(dTime);
         mMyTasks.setText( task);
 
