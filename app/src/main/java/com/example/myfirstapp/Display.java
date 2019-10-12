@@ -12,11 +12,15 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class Display extends AppCompatActivity {
-    private TextView mMyTitle;
-    private TextView mMyTime;
-    private TextView mMyTasks;
+//    private TextView mMyTime;
+//    private TextView mMyTasks;
     private ListView mlistTask;
+    @BindView(R.id.myTime) TextView mMyTime;
+    @BindView(R.id.myTask) TextView mMyTasks;
 
     private String[] toDo= new String[]{"eat","work out","clean","visit","help"};
     @Override
@@ -25,8 +29,9 @@ public class Display extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         Calendar calendar=Calendar.getInstance();
         String dTime= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-        mMyTime=(TextView)findViewById(R.id.myTime);
-        mMyTasks=(TextView)findViewById(R.id.myTask);
+//        mMyTime=(TextView)findViewById(R.id.myTime);
+//        mMyTasks=(TextView)findViewById(R.id.myTask);
+        ButterKnife.bind(this);
         Intent intent = getIntent();
         String task = intent.getStringExtra("task");
         mlistTask=(ListView)findViewById(R.id.listTask);
