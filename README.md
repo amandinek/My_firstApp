@@ -18,7 +18,6 @@ KARAMBIZI Amandine Gloria
 ### TECHNOLOGIES USED
 
    + android
-   + classes with extension java
 
 ### Setup
 
