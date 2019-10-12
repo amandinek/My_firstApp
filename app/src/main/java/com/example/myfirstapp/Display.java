@@ -35,7 +35,6 @@ public class Display extends AppCompatActivity {
         mlistTask.setAdapter(adapter);
 
 
-
         mMyTime.setText(dTime);
         mMyTasks.setText( task);
 
