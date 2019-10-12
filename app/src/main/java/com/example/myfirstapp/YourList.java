@@ -8,17 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class YourList extends AppCompatActivity {
 
-    private EditText mTask;
-    private Button mAcivity;
+//    private EditText mTask;
+//    private Button mAcivity;
+    @BindView(R.id.task) EditText mTask;
+    @BindView(R.id.viewact) Button mAcivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_list);
-        mTask =(EditText) findViewById(R.id.task);
-        mAcivity=(Button) findViewById(R.id.viewact);
+//        mTask =(EditText) findViewById(R.id.task);
+//        mAcivity=(Button) findViewById(R.id.viewact);
+        ButterKnife.bind(this);
 
         mAcivity.setOnClickListener(new View.OnClickListener() {
             @Override
