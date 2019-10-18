@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.myfirstapp.models.CheckList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
 
 public class YourList extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +29,8 @@ public class YourList extends AppCompatActivity implements View.OnClickListener 
 //        mAcivity=(Button) findViewById(R.id.viewact);
         ButterKnife.bind(this);
         mActivity.setOnClickListener(this);
+
+
     }
 
 
