@@ -9,24 +9,62 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.example.myfirstapp.models.CheckList;
 
+import com.example.myfirstapp.models.Actor;
+import com.example.myfirstapp.models.GitSearchAppResponse;
+import com.example.myfirstapp.network.ApiService;
+import com.example.myfirstapp.network.GitClient;
+
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+//import retrofit2.Call;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Display extends AppCompatActivity {
-//    private TextView mMyTime;
-//    private TextView mMyTasks;
+
+//
+//     Retrofit retrofit = new Retrofit.Builder()
+//            .baseUrl("https://developer.github.com/v3")
+//             .addConverterFactory((GsonConverterFactory.create()))
+//            .build();
+
     private ListView mlistTask;
     @BindView(R.id.myTime) TextView mMyTime;
     @BindView(R.id.myTask) TextView mMyTasks;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
+
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showPublicEvents() {
+        mlistTask.setVisibility(View.VISIBLE);
+//        mLocationTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+
 
     private String[] toDo= new String[]{"eat","work out","clean","visit","help"};
     @Override
@@ -42,8 +80,8 @@ public class Display extends AppCompatActivity {
         String task = intent.getStringExtra("task");
         mlistTask=(ListView)findViewById(R.id.listTask);
 
-        ArrayAdapter adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,toDo);
-        mlistTask.setAdapter(adapter);
+//        ArrayAdapter adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,toDo);
+//        mlistTask.setAdapter(adapter);
 
         mlistTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,43 +93,51 @@ public class Display extends AppCompatActivity {
         });
         mMyTime.setText(dTime);
         mMyTasks.setText( task);
-//
-//        TrelloApi client = TrelloClient.getClient();
-//
-//        Call<CheckList> call = client.getChecklists(task, "list");
+
+        ApiService client = GitClient.getClient();
+
+        Call<GitSearchAppResponse> call = client.getPublicEvents(task, "list-public-events");
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//        call.enqueue(new Callback<CheckList>() {
-//            @Override
-//            public void onResponse(Call<CheckList> call, Response<CheckList> response) {
-//                if (response.isSuccessful()) {
-//                    List<Business> restaurantsList = response.body().getBusinesses();
-//                    String[] restaurants = new String[restaurantsList.size()];
-//                    String[] categories = new String[restaurantsList.size()];
-//
-//                    for (int i = 0; i < restaurants.length; i++){
-//                        restaurants[i] = restaurantsList.get(i).getName();
-//                    }
-//
-//                    for (int i = 0; i < categories.length; i++) {
-//                        Category category = restaurantsList.get(i).getCategories().get(0);
-//                        categories[i] = category.getTitle();
-//                    }
-//
-//                    ArrayAdapter adapter
-//                            = new MyRestaurantsArrayAdapter(RestaurantsActivity.this, android.R.layout.simple_list_item_1, restaurants, categories);
-//                    mListView.setAdapter(adapter);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CheckList> call, Throwable t) {
-//
-//            }
-//
-//        });
+        call.enqueue(new Callback<GitSearchAppResponse>() {
+            @Override
+            public void onResponse(Call<GitSearchAppResponse> call, Response<GitSearchAppResponse> response) {
+                if (response.isSuccessful()) {
+                    List<Actor> actorsList = (List<Actor>) response.body().getActor();
+                    String[] actor = new String[actorsList.size()];
+//                    String[] repo = new String[actorsList.size()];
 
+                    for (int i = 0; i < actor.length; i++){
+                        actor[i] = actorsList.get(i).getLogin();
+                    }
+
+//                    for (int i = 0; i < repo.length; i++) {
+//                        Repo category = actorsList.get(i).getLogin().get(0);
+//                        repo[i] = category.getName();
+//                    }
+
+                    ArrayAdapter adapter
+                            = new ToDoAdapter(Display.this, android.R.layout.simple_list_item_1, actor);
+                    mlistTask.setAdapter(adapter);
+
+                    showPublicEvents();
+
+                }
+                else {
+                    showUnsuccessfulMessage();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GitSearchAppResponse> call, Throwable t) {
+
+//                Log.e(TAG, "onFailure: ",t );
+                hideProgressBar();
+                showFailureMessage();
+
+            }
+
+        });
 
 
     }

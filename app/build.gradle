@@ -8,7 +8,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'YELP_API_KEY', YelpApiKey
+        it.buildConfigField 'String', 'GIT_API_KEY', YelpApiKey
     }
 
 
