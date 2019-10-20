@@ -1,6 +1,7 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 
@@ -15,8 +16,10 @@ import android.widget.Toast;
 
 //import com.example.myfirstapp.models.CheckList;
 
+import com.example.myfirstapp.adapters.EventsListAdapter;
 import com.example.myfirstapp.models.Actor;
 import com.example.myfirstapp.models.GitSearchAppResponse;
+import com.example.myfirstapp.models.Repo;
 import com.example.myfirstapp.network.ApiService;
 import com.example.myfirstapp.network.GitClient;
 
@@ -42,6 +45,9 @@ public class Display extends AppCompatActivity {
     private ListView mlistTask;
     @BindView(R.id.myTime) TextView mMyTime;
     @BindView(R.id.myTask) TextView mMyTasks;
+
+    @BindView(R.id.recyclerView)RecyclerView mRecyclerView;
+    private EventsListAdapter mAdapter;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
@@ -103,12 +109,12 @@ public class Display extends AppCompatActivity {
             @Override
             public void onResponse(Call<GitSearchAppResponse> call, Response<GitSearchAppResponse> response) {
                 if (response.isSuccessful()) {
-                    List<Actor> actorsList = (List<Actor>) response.body().getActor();
+                    List<Repo> actorsList = (List<Repo>) response.body().getActor();
                     String[] actor = new String[actorsList.size()];
 //                    String[] repo = new String[actorsList.size()];
 
                     for (int i = 0; i < actor.length; i++){
-                        actor[i] = actorsList.get(i).getLogin();
+                        actor[i] = actorsList.get(i).getName();
                     }
 
 //                    for (int i = 0; i < repo.length; i++) {

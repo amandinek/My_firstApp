@@ -4,11 +4,15 @@ package com.example.myfirstapp.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
+
 public class Org {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private double id;
     @SerializedName("login")
     @Expose
     private String login;
@@ -46,11 +50,11 @@ public class Org {
         this.avatarUrl = avatarUrl;
     }
 
-    public Integer getId() {
+    public double getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(double id) {
         this.id = id;
     }
 
