@@ -1,6 +1,7 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -17,11 +18,11 @@ import android.widget.Toast;
 //import com.example.myfirstapp.models.CheckList;
 
 import com.example.myfirstapp.adapters.EventsListAdapter;
-import com.example.myfirstapp.models.Actor;
-import com.example.myfirstapp.models.GitSearchAppResponse;
-import com.example.myfirstapp.models.Repo;
+import com.example.myfirstapp.models.Business;
+import com.example.myfirstapp.models.Category;
+import com.example.myfirstapp.models.YelpEventResponse;
 import com.example.myfirstapp.network.ApiService;
-import com.example.myfirstapp.network.GitClient;
+import com.example.myfirstapp.network.YelpClient;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -35,40 +36,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Display extends AppCompatActivity {
-
-//
-//     Retrofit retrofit = new Retrofit.Builder()
-//            .baseUrl("https://developer.github.com/v3")
-//             .addConverterFactory((GsonConverterFactory.create()))
-//            .build();
-
+//    public List<Business> reviews;
     private ListView mlistTask;
     @BindView(R.id.myTime) TextView mMyTime;
     @BindView(R.id.myTask) TextView mMyTasks;
-
     @BindView(R.id.recyclerView)RecyclerView mRecyclerView;
     private EventsListAdapter mAdapter;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
-    private void showFailureMessage() {
-        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
-        mErrorTextView.setVisibility(View.VISIBLE);
-    }
 
-    private void showUnsuccessfulMessage() {
-        mErrorTextView.setText("Something went wrong. Please try again later");
-        mErrorTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showPublicEvents() {
-        mlistTask.setVisibility(View.VISIBLE);
-//        mLocationTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
-    }
 
 
 
@@ -100,42 +77,42 @@ public class Display extends AppCompatActivity {
         mMyTime.setText(dTime);
         mMyTasks.setText( task);
 
-        ApiService client = GitClient.getClient();
+        ApiService client = YelpClient.getClient();
 
-        Call<GitSearchAppResponse> call = client.getPublicEvents(task, "list-public-events");
+        Call<YelpEventResponse> call = client.getPublicEvents(task, "location");
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        call.enqueue(new Callback<GitSearchAppResponse>() {
+        call.enqueue(new Callback<YelpEventResponse>() {
             @Override
-            public void onResponse(Call<GitSearchAppResponse> call, Response<GitSearchAppResponse> response) {
+            public void onResponse(Call<YelpEventResponse> call, Response<YelpEventResponse> response) {
                 if (response.isSuccessful()) {
-                    List<Repo> actorsList = (List<Repo>) response.body().getActor();
-                    String[] actor = new String[actorsList.size()];
-//                    String[] repo = new String[actorsList.size()];
+                    List<Business> reviewList = response.body().getBusinesses();
+                    String[] review = new String[reviewList.size()];
+//                    String[] categories = new String[reviewList.size()];
 
-                    for (int i = 0; i < actor.length; i++){
-                        actor[i] = actorsList.get(i).getName();
+                    for (int i = 0; i < review .length; i++){
+                        review [i] = reviewList.get(i).getName();
                     }
 
-//                    for (int i = 0; i < repo.length; i++) {
-//                        Repo category = actorsList.get(i).getLogin().get(0);
-//                        repo[i] = category.getName();
+//                    for (int i = 0; i < categories.length; i++) {
+//                        Category category = reviewList.get(i).getCategories().get(0);
+//                        categories[i] = category.getTitle();
 //                    }
 
                     ArrayAdapter adapter
-                            = new ToDoAdapter(Display.this, android.R.layout.simple_list_item_1, actor);
+                            = new ArrayAdapter(Display.this, android.R.layout.simple_list_item_1, review);
                     mlistTask.setAdapter(adapter);
+                    System.out.println(adapter);
+                    showReview();
 
-                    showPublicEvents();
 
-                }
-                else {
+                }else {
                     showUnsuccessfulMessage();
                 }
             }
 
             @Override
-            public void onFailure(Call<GitSearchAppResponse> call, Throwable t) {
+            public void onFailure(Call<YelpEventResponse> call, Throwable t) {
 
 //                Log.e(TAG, "onFailure: ",t );
                 hideProgressBar();
@@ -145,6 +122,25 @@ public class Display extends AppCompatActivity {
 
         });
 
+    }
 
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showReview() {
+        mlistTask.setVisibility(View.VISIBLE);
+//        mLocationTextView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }

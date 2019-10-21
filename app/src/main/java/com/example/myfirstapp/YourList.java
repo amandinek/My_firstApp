@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
 
 public class YourList extends AppCompatActivity implements View.OnClickListener {
 

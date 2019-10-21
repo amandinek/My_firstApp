@@ -9,10 +9,10 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.myfirstapp.Constants.GIT_API_KEY;
-import static com.example.myfirstapp.Constants.GIT_BASE_URL;
+import static com.example.myfirstapp.Constants.YELP_API_KEY;
+import static com.example.myfirstapp.Constants.YELP_BASE_URL;
 
-public class GitClient {
+public class YelpClient {
 
     private static Retrofit retrofit=null;
 
@@ -23,7 +23,7 @@ public class GitClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request newRequest  = chain.request().newBuilder()
-                                    .addHeader("Authorization", GIT_API_KEY)
+                                    .addHeader("Authorization", YELP_API_KEY)
                                     .build();
                             return chain.proceed(newRequest);
                         }
@@ -31,7 +31,7 @@ public class GitClient {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl(GIT_BASE_URL)
+                    .baseUrl(YELP_BASE_URL)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

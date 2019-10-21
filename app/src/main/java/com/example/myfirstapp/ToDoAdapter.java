@@ -5,23 +5,23 @@ import android.widget.ArrayAdapter;
 
 public class ToDoAdapter extends ArrayAdapter {
     private Context mContext;
-    private String[] mToDo;
+    private String[] review;
 
-    public ToDoAdapter(Context context, int resource,String[] toDo){
+    public ToDoAdapter(Context context, int resource,String[] review){
         super(context,resource);
         this.mContext=context;
-        this.mToDo= toDo;
+        this.review= review;
     }
 
     @Override
     public Object getItem(int position) {
-        String toDo = mToDo[position];
-        return String.format("%s", toDo);
+        String reviews = review[position];
+        return String.format("%s", reviews);
     }
 
     @Override
     public int getCount() {
-        return mToDo.length;
+        return review.length;
     }
 
 
