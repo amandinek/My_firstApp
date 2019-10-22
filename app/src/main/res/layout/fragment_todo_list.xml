@@ -69,9 +69,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View on git"
+                    android:text="View website"
                     android:id="@+id/websiteTextView"
-                    android:drawableLeft="@drawable/ic_directions_white_black_24dp"
+                    android:drawableLeft="@drawable/ic_web_asset_black_24dp"
                     android:drawablePadding="4dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15sp"
@@ -113,7 +113,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Restaurant"
+                android:text="Save"
                 android:id="@+id/saveRestaurantButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorPrimaryDark"
