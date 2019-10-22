@@ -1,6 +1,7 @@
 package com.example.myfirstapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.TodoListDetails;
 import com.example.myfirstapp.models.Business;
 import com.squareup.picasso.Picasso;
-//import com.example.myfirstapp.TodoListDetails;
 
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -64,14 +67,14 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Di
             itemView.setOnClickListener(this);
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            int itemPosition = getLayoutPosition();
-//            Intent intent = new Intent(mContext, TodoListDetails.class);
-//            intent.putExtra("position", itemPosition);
-//            intent.putExtra("restaurants", Parcels.wrap(mActors));
-//            mContext.startActivity(intent);
-//        }
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, TodoListDetails.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("restaurants", Parcels.wrap(mReviews));
+            mContext.startActivity(intent);
+        }
 
         public void bindReview(Business review) {
             mReviewTextView.setText(review.getName());
@@ -80,10 +83,6 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Di
             Picasso.get().load(review.getImageUrl()).into(mReviewImageView);
         }
 
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 
 }
