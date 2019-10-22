@@ -13,7 +13,7 @@ KARAMBIZI Amandine Gloria
  - [x]  License
 ### APPLICATION DESCRIPTION
 
- This application will allow the user to set their task and be able to view the task.
+ This application will allow the user to set their task and be able to view the task.and also search for locations and be able to access the website's location, view it on google map and also call to make appointments or ask more information.
 
 ### TECHNOLOGIES USED
 
@@ -34,8 +34,8 @@ KARAMBIZI Amandine Gloria
 
 ### Picture of Application
 
-  <img src= "screenshoot/list.png">
-  <img src= "screenshoot/display.png">
+  <img src= "screenshoot/location.png">
+  <img src= "screenshoot/details.png">
 
 
 ### LISENCE
