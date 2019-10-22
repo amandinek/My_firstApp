@@ -40,13 +40,13 @@ public class Display extends AppCompatActivity {
 
     private ListView mlistTask;
     @BindView(R.id.myTime) TextView mMyTime;
-    @BindView(R.id.myTask) TextView mMyTasks;
+//    @BindView(R.id.myTask) TextView mMyTasks;
     @BindView(R.id.recyclerView)RecyclerView mRecyclerView;
     private EventsListAdapter mAdapter;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
-
+    public List<Business> review;
 
 
 
@@ -66,7 +66,7 @@ public class Display extends AppCompatActivity {
 
 
         mMyTime.setText(dTime);
-        mMyTasks.setText(task);
+//        mMyTasks.setText(task);
 
         ApiService client = YelpClient.getClient();
 
@@ -77,17 +77,23 @@ public class Display extends AppCompatActivity {
             public void onResponse(Call<YelpEventResponse> call, Response<YelpEventResponse> response) {
                 hideProgressBar();
                 if (response.isSuccessful()) {
-                    List<Business> reviewList = response.body().getBusinesses();
-                    String[] review = new String[reviewList.size()];
-                    String[] categories = new String[reviewList.size()];
-                    for (int i = 0; i < review .length; i++){
-                        review [i] = reviewList.get(i).getName();
-                    }
+//                    List<Business> reviewList = response.body().getBusinesses();
+//                    String[] review = new String[reviewList.size()];
+//                    String[] categories = new String[reviewList.size()];
+//                    for (int i = 0; i < review .length; i++){
+//                        review [i] = reviewList.get(i).getName();
+//                    }
 
+                     review= response.body().getBusinesses();
+//                    ArrayAdapter adapter
+                    mAdapter = new EventsListAdapter(Display.this,review);
+                    mRecyclerView.setAdapter(mAdapter);
 
-                    ArrayAdapter adapter
-                            = new ReviewsArrayAdapter(Display.this, android.R.layout.simple_list_item_1, review);
-                    mlistTask.setAdapter(adapter);
+                    RecyclerView.LayoutManager layoutManager =
+                            new LinearLayoutManager(Display.this);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setHasFixedSize(true);
+
 
                     showReview();
 

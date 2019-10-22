@@ -50,7 +50,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Di
     public class DisplayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.reviewImageView) ImageView mReviewImageView;
         @BindView(R.id.reviewTextView) TextView mReviewTextView;
-        @BindView(R.id.categoryTextView) TextView mCategoryTextView;
+//        @BindView(R.id.categoryTextView) TextView mCategoryTextView;
         @BindView(R.id.ratingTextView) TextView mRatingTextView;
 
 
@@ -75,7 +75,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Di
 
         public void bindReview(Business review) {
             mReviewTextView.setText(review.getName());
-            mCategoryTextView.setText(review.getCategories().get(0).getTitle());
+//            mCategoryTextView.setText(review.getCategories().get(0).getTitle());
             mRatingTextView.setText("Rating: " + review.getRating() + "/5");
             Picasso.get().load(review.getImageUrl()).into(mReviewImageView);
         }
