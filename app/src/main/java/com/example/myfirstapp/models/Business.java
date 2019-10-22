@@ -1,10 +1,13 @@
 
 package com.example.myfirstapp.models;
-
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+//@Parcel
 public class Business {
 
     @SerializedName("rating")
@@ -52,9 +55,10 @@ public class Business {
     @SerializedName("transactions")
     @Expose
     private List<String> transactions = null;
+
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Business() {
     }
@@ -217,4 +221,3 @@ public class Business {
     }
 
 }
-
