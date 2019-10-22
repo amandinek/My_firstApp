@@ -19,7 +19,6 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,7 +38,6 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Di
         DisplayViewHolder viewHolder = new DisplayViewHolder(view);
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(EventsListAdapter.DisplayViewHolder holder, int position) {
         holder.bindReview(mReviews.get(position));
@@ -78,7 +76,6 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Di
 
         public void bindReview(Business review) {
             mReviewTextView.setText(review.getName());
-//            mCategoryTextView.setText(review.getCategories().get(0).getTitle());
             mRatingTextView.setText("Rating: " + review.getRating() + "/5");
             Picasso.get().load(review.getImageUrl()).into(mReviewImageView);
         }

@@ -1,6 +1,7 @@
 package com.example.myfirstapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -20,7 +21,7 @@ import org.parceler.Parcels;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TodoListFragment extends Fragment {
+public class TodoListFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.reviewImageView)ImageView mImageLabel;
     @BindView(R.id.reviewNameTextView)TextView mNameLabel;
     @BindView(R.id.ratingTextView) TextView mRatingLabel;
@@ -61,7 +62,32 @@ public class TodoListFragment extends Fragment {
         mRatingLabel.setText(Double.toString(mReview.getRating()) + "/5");
         mPhoneLabel.setText(mReview.getPhone());
         mAddressLabel.setText(mReview.getLocation().toString());
+        mWebsiteLabel.setOnClickListener(this);
+        mPhoneLabel.setOnClickListener(this);
+        mAddressLabel.setOnClickListener(this);
 
         return view;
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mWebsiteLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mReview.getUrl()));
+            startActivity(webIntent);
+        }
+        if (v == mPhoneLabel) {
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
+                    Uri.parse("tel:" + mReview.getPhone()));
+            startActivity(phoneIntent);
+        }
+        if (v == mAddressLabel) {
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("geo:" + mReview.getCoordinates().getLatitude()
+                            + "," + mReview.getCoordinates().getLongitude()
+                            + "?q=(" + mReview.getName() + ")"));
+            startActivity(mapIntent);
+        }
+    }
+
 }
