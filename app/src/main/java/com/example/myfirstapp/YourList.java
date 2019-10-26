@@ -11,13 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class YourList extends AppCompatActivity implements View.OnClickListener {
 
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+private DatabaseReference mSearchedLocationReference;
 
 //    private EditText mTask;
 //    private Button mAcivity;
@@ -32,8 +36,14 @@ public class YourList extends AppCompatActivity implements View.OnClickListener 
 //        mAcivity=(Button) findViewById(R.id.viewact);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
+
+        mSearchedLocationReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
+
 
         mActivity.setOnClickListener(this);
 
@@ -45,9 +55,9 @@ public class YourList extends AppCompatActivity implements View.OnClickListener 
             public void onClick(View v) {
         if(v == mActivity) {
             String task = mTask.getText().toString();
-            if(!(task).equals("")) {
-                addToSharedPreferences(task);
-            }
+//            if(!(task).equals("")) {
+//                addToSharedPreferences(task);
+//            }
 
             Intent intent = new Intent(YourList.this, Display.class);
             intent.putExtra("task", task);
@@ -56,7 +66,7 @@ public class YourList extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
-    }
+//    private void addToSharedPreferences(String location) {
+//        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
+//    }
 }

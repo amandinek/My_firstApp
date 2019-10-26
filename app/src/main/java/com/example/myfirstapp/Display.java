@@ -122,7 +122,7 @@ public class Display extends AppCompatActivity {
         mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
         Log.d("Shared Pref Location", mRecentAddress);
         if (mRecentAddress != null) {
-            getReview(mRecentAddress);
+//            getReview(mRecentAddress);
         }
     }
 
