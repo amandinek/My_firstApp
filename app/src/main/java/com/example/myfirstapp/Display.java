@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,6 +50,9 @@ public class Display extends AppCompatActivity {
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     public List<Business> review;
+
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
 
 
 
@@ -111,6 +117,13 @@ public class Display extends AppCompatActivity {
 
             }
         });
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        Log.d("Shared Pref Location", mRecentAddress);
+        if (mRecentAddress != null) {
+            getReview(mRecentAddress);
+        }
     }
 
 
