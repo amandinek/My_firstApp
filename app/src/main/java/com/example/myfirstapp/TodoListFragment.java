@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myfirstapp.models.Business;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -66,6 +69,9 @@ public class TodoListFragment extends Fragment implements View.OnClickListener {
         mPhoneLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
 
+        mSaveRestaurantButton.setOnClickListener(this);
+
+
         return view;
     }
 
@@ -87,6 +93,14 @@ public class TodoListFragment extends Fragment implements View.OnClickListener {
                             + "," + mReview.getCoordinates().getLongitude()
                             + "?q=(" + mReview.getName() + ")"));
             startActivity(mapIntent);
+        }
+
+        if (v == mSaveRestaurantButton) {
+            DatabaseReference restaurantRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
+            restaurantRef.push().setValue(mReview);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 

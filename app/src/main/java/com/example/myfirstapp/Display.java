@@ -51,8 +51,8 @@ public class Display extends AppCompatActivity {
 
     public List<Business> review;
 
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
 
 
@@ -73,6 +73,7 @@ public class Display extends AppCompatActivity {
 
         mMyTime.setText(dTime);
 //        mMyTasks.setText(task);
+//        getRestaurants(task);
 
         ApiService client = YelpClient.getClient();
 
@@ -118,12 +119,13 @@ public class Display extends AppCompatActivity {
             }
         });
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        Log.d("Shared Pref Location", mRecentAddress);
-        if (mRecentAddress != null) {
-//            getReview(mRecentAddress);
-        }
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//        Log.d("Shared Pref Location", mRecentAddress);
+//        if (mRecentAddress != null) {
+////            getReview(mRecentAddress);
+//        }
+
     }
 
 

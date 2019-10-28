@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //    private Button mSendButton;
     @BindView(R.id.sendButton) Button mSendButton;
+    @BindView(R.id.savedReview) Button mSavedReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Intent intent = new Intent(MainActivity.this, YourList.class);
                     startActivity(intent);
 
+                }
+
+                if (v == mSavedReview) {
+                    Intent intent = new Intent(MainActivity.this, SavedReviewListActivity.class);
+                    startActivity(intent);
                 }
             }
 

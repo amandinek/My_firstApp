@@ -39,12 +39,23 @@
         android:id="@+id/sendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
         android:layout_centerHorizontal="true"
         android:text="add an activity"
+        android:layout_alignParentBottom="true"
         android:textColor="@color/colorAccent"
         android:background="@color/colorPrimaryDark"
 
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Saved Reviews"
+        android:id="@+id/savedReview"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"/>
 
 </RelativeLayout>
