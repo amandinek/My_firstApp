@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.TodoListDetails;
 import com.example.myfirstapp.models.Business;
+import com.example.myfirstapp.models.Restaurants;
 import com.squareup.picasso.Picasso;
 
 

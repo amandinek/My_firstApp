@@ -23,8 +23,8 @@ import butterknife.ButterKnife;
 
 public class YourList extends AppCompatActivity implements View.OnClickListener {
 
-//    private SharedPreferences mSharedPreferences;
-//    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 private DatabaseReference mSearchedLocationReference;
 private ValueEventListener mSearchedLocationReferenceListener;
 
@@ -41,26 +41,26 @@ private ValueEventListener mSearchedLocationReferenceListener;
 //        mAcivity=(Button) findViewById(R.id.viewact);
         ButterKnife.bind(this);
 
-//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        mEditor = mSharedPreferences.edit();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         mSearchedLocationReference = FirebaseDatabase
                 .getInstance()
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
 
-        mSearchedLocationReference.addValueEventListener(new ValueEventListener() { //attach listener
+        mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
 
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) { //something changed!
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
                     String location = locationSnapshot.getValue().toString();
-                    Log.d("Locations updated", "location: " + location); //log
+                    Log.d("Locations updated", "location: " + location);
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) { //update UI here if error occurred.
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
@@ -84,9 +84,9 @@ private ValueEventListener mSearchedLocationReferenceListener;
             public void onClick(View v) {
         if(v == mActivity) {
             String task = mTask.getText().toString();
-//            if(!(task).equals("")) {
-//                addToSharedPreferences(task);
-//            }
+            if(!(task).equals("")) {
+                addToSharedPreferences(task);
+            }
             saveLocationToFirebase(task);
 
             Intent intent = new Intent(YourList.this, Display.class);
@@ -96,13 +96,10 @@ private ValueEventListener mSearchedLocationReferenceListener;
         }
     }
 
-//    private void addToSharedPreferences(String location) {
-//        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
-//    }
+    private void addToSharedPreferences(String location) {
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
+    }
 
-//    public void saveLocationToFirebase(String location) {
-//        mSearchedLocationReference.setValue(location);
-//    }
 
     public void saveLocationToFirebase(String location) {
         mSearchedLocationReference.push().setValue(location);
