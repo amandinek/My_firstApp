@@ -25,23 +25,25 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String TAG = LoginActivity.class.getSimpleName();
+    @BindView(R.id.passwordLoginButton)
+    Button mPasswordLoginButton;
+    @BindView(R.id.emailEditText)
+    EditText mEmailEditText;
+    @BindView(R.id.passwordEditText)
+    EditText mPasswordEditText;
+    @BindView(R.id.registerTextView)
+    TextView mRegisterTextView;
 
-    @BindView(R.id.passwordLoginButton) Button mPasswordLoginButton;
-    @BindView(R.id.emailEditText) EditText mEmailEditText;
-    @BindView(R.id.passwordEditText) EditText mPasswordEditText;
-    @BindView(R.id.registerTextView) TextView mRegisterTextView;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog mAuthProgressDialog;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_activity);
 
         ButterKnife.bind(this);
         mRegisterTextView.setOnClickListener(this);
@@ -76,17 +78,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     @Override
-            public void onClick(View view) {
-                if (view == mRegisterTextView) {
-                    Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
-                    startActivity(intent);
-                    finish();
-                }
+    public void onClick(View view) {
+        if (view == mRegisterTextView) {
+            Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+            startActivity(intent);
+            finish();
+        }
 
-                if (view == mPasswordLoginButton) {
-                    loginWithPassword();
-                }
-            }
+        if (view == mPasswordLoginButton) {
+            loginWithPassword();
+        }
+    }
 
     private void loginWithPassword() {
         String email = mEmailEditText.getText().toString().trim();
@@ -112,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         finish();
 //                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                         if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithEmail", task.getException());
+//                            Log.w(TAG, "signInWithEmail", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -133,7 +135,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+}
 
 
-    }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
