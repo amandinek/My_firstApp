@@ -1,4 +1,4 @@
-package com.example.myfirstapp.ui;
+package com.example.myfirstapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

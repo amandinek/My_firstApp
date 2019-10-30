@@ -1,11 +1,11 @@
 package com.example.myfirstapp.models;
 
-import org.parceler.Parcel;
+//import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Parcel
+//@Parcel
 public class Restaurants {
     String name;
     String phone;
