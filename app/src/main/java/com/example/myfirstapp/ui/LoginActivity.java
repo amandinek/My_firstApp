@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
 
-//        mPasswordLoginButton.setOnClickListener(this);
+        mPasswordLoginButton.setOnClickListener(this);
         createAuthProgressDialog();
     }
 
@@ -87,6 +87,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (view == mPasswordLoginButton) {
             loginWithPassword();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+
         }
     }
 
