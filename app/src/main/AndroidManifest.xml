@@ -20,10 +20,10 @@
         <activity android:name=".ui.CreateAccount" />
         <activity android:name=".SavedReviewListActivity" />
         <activity android:name=".TodoListDetails" />
-        <activity android:name=".Display">
+        <activity android:name=".ui.Display">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.Display" />
+                android:value="com.example.myfirstapp.ui.Display" />
         </activity>
         <activity android:name=".YourList">
             <meta-data
@@ -31,7 +31,7 @@
                 android:value="com.example.myfirstapp.YourList" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
 
         </activity>

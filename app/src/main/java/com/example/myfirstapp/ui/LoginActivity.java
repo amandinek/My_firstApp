@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myfirstapp.MainActivity;
 import com.example.myfirstapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,7 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
 
-        mPasswordLoginButton.setOnClickListener(this);
+//        mPasswordLoginButton.setOnClickListener(this);
+        createAuthProgressDialog();
     }
 
     private void createAuthProgressDialog() {
@@ -99,14 +99,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mPasswordEditText.setError("Password cannot be blank");
             return;
         }
-
+        mAuthProgressDialog.show();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         mAuthProgressDialog.dismiss();
-                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+//                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",

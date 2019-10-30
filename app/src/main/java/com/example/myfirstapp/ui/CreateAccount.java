@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myfirstapp.MainActivity;
 import com.example.myfirstapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -71,7 +70,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         if (view == mLoginTextView) {
-            Intent intent = new Intent(CreateAccount.this,LoginActivity.class);
+            Intent intent = new Intent(CreateAccount.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -95,6 +94,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
 //            boolean validName = isValidName(name);
             boolean validPassword = isValidPassword(password, confirmPassword);
             if (!validEmail || !validName || !validPassword) return;
+            mAuthProgressDialog.show();
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -192,6 +192,9 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, user.getDisplayName());
+                            Toast.makeText(CreateAccount.this, "The display name has been set",
+                                    Toast.LENGTH_SHORT).show();
+
                         }
                     }
 

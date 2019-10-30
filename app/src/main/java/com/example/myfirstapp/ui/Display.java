@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
@@ -15,8 +15,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -25,6 +23,8 @@ import android.widget.Toast;
 
 //import com.example.myfirstapp.models.CheckList;
 
+import com.example.myfirstapp.Constants;
+import com.example.myfirstapp.R;
 import com.example.myfirstapp.adapters.EventsListAdapter;
 //import com.example.myfirstapp.adapters.ReviewsArrayAdapter;
 import com.example.myfirstapp.models.Business;
@@ -33,7 +33,6 @@ import com.example.myfirstapp.models.YelpEventResponse;
 import com.example.myfirstapp.network.ApiService;
 import com.example.myfirstapp.network.YelpClient;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
