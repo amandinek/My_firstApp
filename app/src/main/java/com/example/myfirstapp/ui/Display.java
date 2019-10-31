@@ -90,17 +90,17 @@ public class Display extends AppCompatActivity {
             public void onResponse(Call<YelpEventResponse> call, Response<YelpEventResponse> response) {
                 hideProgressBar();
                 if (response.isSuccessful()) {
-                    List<Business> reviewList = response.body().getBusinesses();
-                    String[] review = new String[reviewList.size()];
-                    String[] categories = new String[reviewList.size()];
-                    for (int i = 0; i < review .length; i++){
-                        review [i] = reviewList.get(i).getName();
-                    }
+//                    List<Business> reviewList = response.body().getBusinesses();
+//                    String[] review = new String[reviewList.size()];
+//                    String[] categories = new String[reviewList.size()];
+//                    for (int i = 0; i < review .length; i++){
+//                        review [i] = reviewList.get(i).getName();
+//                    }
 
-//                     review= response.body().getBusinesses();
-////                    ArrayAdapter adapter
-//                    mAdapter = new EventsListAdapter(Display.this,review);
-//                    mRecyclerView.setAdapter(mAdapter);
+                     review= response.body().getBusinesses();
+//                    ArrayAdapter adapter
+                    mAdapter = new EventsListAdapter(Display.this,review);
+                    mRecyclerView.setAdapter(mAdapter);
 
                     RecyclerView.LayoutManager layoutManager =
                             new LinearLayoutManager(Display.this);
