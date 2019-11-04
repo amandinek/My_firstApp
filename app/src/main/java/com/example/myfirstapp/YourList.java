@@ -44,6 +44,13 @@ private ValueEventListener mSearchedLocationReferenceListener;
 //        mAcivity=(Button) findViewById(R.id.viewact);
         ButterKnife.bind(this);
 
+            Button mActivity = (Button)findViewById(R.id.viewact);
+            Animation animation1 =
+                    AnimationUtils.loadAnimation(getApplicationContext(),
+                            R.anim.myanim);
+            mActivity.startAnimation(animation1);
+
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
 
@@ -107,11 +114,5 @@ private ValueEventListener mSearchedLocationReferenceListener;
     public void saveLocationToFirebase(String location) {
         mSearchedLocationReference.push().setValue(location);
     }
-    public void blink(View view){
-        Button mActivity = (Button)findViewById(R.id.viewact);
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.myanim);
-        mActivity.startAnimation(animation1);
-    }
+
 }

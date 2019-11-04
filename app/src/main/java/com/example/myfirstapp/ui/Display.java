@@ -80,6 +80,11 @@ public class Display extends AppCompatActivity {
         mlistTask = (ListView) findViewById(R.id.listTask);
 
 
+            ImageView image = (ImageView)findViewById(R.id.imageView);
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.imageanim);
+            image.startAnimation(animation);
+
         mMyTime.setText(dTime);
 //        mMyTasks.setText(task);
 //        getRestaurants(task);
@@ -195,11 +200,7 @@ public class Display extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
     }
 
-    public void clockwise(View view){
-        ImageView image = (ImageView)findViewById(R.id.imageView);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.imageanim);
-        image.startAnimation(animation);
-    }
+
+
 
 }
