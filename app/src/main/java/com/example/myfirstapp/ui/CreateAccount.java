@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,6 +50,11 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_create_account);
 
         ButterKnife.bind(this);
+        Button mCreateUserButton = (Button)findViewById(R.id.viewact);
+        Animation animation2 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.myanim);
+        mCreateUserButton.startAnimation(animation2);
 
         mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
