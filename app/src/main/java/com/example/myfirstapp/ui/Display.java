@@ -15,6 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -173,35 +176,7 @@ public class Display extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-//
-//    private void getRestaurants(String location) {
-//        final ApiService apiService = new ApiService();
-//
-//        apiService.findRestaurant(location, new Callback() {
-//
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) {
-//                mRestaurants =  ApiService.processResults(response);
-//
-//               Display.this.runOnUiThread(new Runnable() {
-//
-//                    @Override
-//                    public void run() {
-//                        mAdapter = new EventsListAdapter(getApplicationContext(), mAdapter);
-//                        mRecyclerView.setAdapter(mAdapter);
-//                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Display.this);
-//                        mRecyclerView.setLayoutManager(layoutManager);
-//                        mRecyclerView.setHasFixedSize(true);
-//                    }
-//                });
-//            }
-//        });
-//    }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -219,4 +194,12 @@ public class Display extends AppCompatActivity {
     private void hideProgressBar(){
         mProgressBar.setVisibility(View.GONE);
     }
+
+    public void clockwise(View view){
+        ImageView image = (ImageView)findViewById(R.id.imageView);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.imageanim);
+        image.startAnimation(animation);
+    }
+
 }

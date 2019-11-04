@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -104,5 +106,12 @@ private ValueEventListener mSearchedLocationReferenceListener;
 
     public void saveLocationToFirebase(String location) {
         mSearchedLocationReference.push().setValue(location);
+    }
+    public void blink(View view){
+        Button mActivity = (Button)findViewById(R.id.viewact);
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.myanim);
+        mActivity.startAnimation(animation1);
     }
 }
