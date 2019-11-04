@@ -80,10 +80,7 @@ public class Display extends AppCompatActivity {
         mlistTask = (ListView) findViewById(R.id.listTask);
 
 
-            ImageView image = (ImageView)findViewById(R.id.imageView);
-            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                    R.anim.imageanim);
-            image.startAnimation(animation);
+
 
         mMyTime.setText(dTime);
 //        mMyTasks.setText(task);
@@ -199,8 +196,6 @@ public class Display extends AppCompatActivity {
     private void hideProgressBar(){
         mProgressBar.setVisibility(View.GONE);
     }
-
-
 
 
 }
